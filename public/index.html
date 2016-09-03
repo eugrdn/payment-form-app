@@ -9,53 +9,51 @@
 		<header>
 			<!-- Header -->
 		</header>
-
-
 		<div id="container">
-			<h2>Payment Process</h2>
-
-			<form action="#" name="form" class = "form-pay" novalidate>
-                <p class="warning1"></p>
-                <div class="form-group">
-                    <label for="paymentAmount">payment amount</label>
-                    <div class = "amount-group" id="paymentAmount">
-                        <select name="currency" id="val" required>
-                            <option value="dollar">&dollar;</option>
-                            <option value="euro">&euro;</option>
-                            <option value="pound">&pound;</option>
-                        </select>
-                        <input type="number">
-                        <button>Edit</button>
-                    </div><!-- amount-group -->
-                </div>
-                <div class = "card-input-group">
-                    <div class="form-container" id="card-input">
-                        <label for="nameOnCard">name on card</label><br>
-                        <input type="text" id = "nameOnCard" required><br>
-                        <label for="cardNumber">card number</label><br>
-                        <input type="text"
-                               id = "cardNumber"
-                               class = "card"
-                               size = "16"
-                               name = "number"
-                               maxlength ="16"
-                               pattern="[0-9]{16}"
-                               required><br>
-                        <label for="expiryDate">expiry date</label><br>
-                        <input type="date" id = "expiryDate" required><br>
-                        <label for="securityCode">security code</label><br>
-                        <input type="password" id="securityCode" size = "3" maxlength="3" pattern="[0-9]{3}" required><br>
-                    </div>
-                </div><!--card-input-group-->
-                <div>
-                    <input type="submit" value = "Pay">
-                </div>
-            </form>
+			<header>
+				<h2>Payment Process</h2>
+			</header>
+			<section>
+				<form action="#" name="form" class = "form-pay" novalidate>
+					<div class = "form-group">
+						<label for="paymentAmount">payment amount</label>
+						<div class="form-row">
+							<input type="text" id="paymentAmount">
+							<select name="currency" class="dropdown">
+								<option value="dollar">&dollar;</option>
+								<option value="euro">&euro;</option>
+								<option value="pound">&pound;</option>
+								<option value="pound">Р</option>
+							</select>
+							<button class="btn-edit">Edit</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="nameOnCard">name on card</label>
+						<input type="text" id = "nameOnCard" >
+					</div>
+					<div class="form-group">
+						<label for="cardNumber">card number</label>
+						<input type="text" id = "cardNumber">
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="form-col">
+								<label for="expiryDate">expiry date</label>
+								<input type="text" id = "expiryDate" placeholder="mm / yy">
+							</div>
+							<div class="form-col">
+								<label for="securityCode">security code</label>
+								<input type="text" id="securityCode">
+							</div>
+						</div>	
+					</div>
+					<input type="submit" value = "Pay" class ="btn-pay">
+				</form>
+			</section>
 		</div><!-- container -->
-
-
-        <footer>
-            <!-- Footer -->
-        </footer>
+		<footer>
+			<!-- Footer -->
+		</footer>
 	</body>
 </html>
