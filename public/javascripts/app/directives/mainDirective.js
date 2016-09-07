@@ -123,15 +123,15 @@
 			link: function(scope, elt, attrs, ngModel) {
 
 				elt.bind('input', function(e) {
-					var target=e.target;
-					if(target.value.length == 2 && target.value.indexOf('/')==-1)
+					var target = e.target;
+					if (target.value.length == 2 && target.value.indexOf('/') == -1)
 						target.value = target.value.replace(/(.{2})/, '$1/');
 				});
 
 				ngModel.$parsers.push(function(val) {
 					if (val == undefined || val.length != 5)
 						return;
-					return val.replace(/\//g,'');
+					return val.replace(/\//g, '');
 				});
 
 

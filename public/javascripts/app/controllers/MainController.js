@@ -7,6 +7,19 @@
 
 	function MainController($scope, $sce) {
 
+		//---------------------------config----------------------------
+
+		$scope.showError = function(model) {
+			return (model.$error.required && $scope.paymentForm.$submitted);
+		}
+
+		$scope.showRequired = function(model) {
+			return (model.$error.required && $scope.paymentForm.$submitted) ||
+				(model.$error.required && !model.$pristine);
+		}
+
+		$scope.dateMask = new RegExp('^(0[1-9]|1[0-2])\/([0-9]{2})$', 'g');
+
 		$scope.payment = {
 			amount: '',
 			currency: '',
@@ -21,6 +34,7 @@
 
 		$scope.disabled = true;
 
+		//--------------------methods--------------------------------
 		$scope.clearSession = function(payment) {
 			for (let prop in payment) {
 				payment[prop] = '';
@@ -32,14 +46,12 @@
 			$scope.disabled = !$scope.disabled;
 		};
 
-
 		$scope.pay = function(valid) {
 			if (!valid) return;
 			//debug
-				console.log($scope.payment);
+			console.log($scope.payment);
 			$scope.clearSession($scope.payment);
 		};
-
 
 		$scope.renderAmount = function(value, currency) {
 			var value = value || '';
@@ -59,21 +71,9 @@
 					currency = '₽';
 					break;
 			}
-			console.log($scope.payment.expiryDate);
-				console.log($scope.payment.cardNumber);
 			return $sce.trustAsHtml(' ' + value + ' ' + currency);
 		};
 
-		//---------------------------config----------------------------
-		
-		$scope.showError = function (model) {
-			return (model.$error.required && $scope.paymentForm.$submitted);
-		}
-		$scope.showRequired = function (model) {
-			return	(model.$error.required && $scope.paymentForm.$submitted) || 
-					(model.$error.required && !model.$pristine);
-		}
-		$scope.dateMask = new RegExp('^(0[1-9]|1[0-2])\/([0-9]{2})$','g');
 	}
 
 })();
