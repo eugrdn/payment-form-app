@@ -19,7 +19,6 @@
 		<nav>
 			<!-- Navigation Bar -->
 		</nav>
-		<!-- Dynamic Content -->
 		<div id="container">
 			<div class="header">
 				<h3>Payment Process</h3>
@@ -37,13 +36,14 @@
 									ng-minlength="1"
 									ng-maxlength="9"
 									ng-disabled="disabled";
-									ng-class = "{'error': (paymentForm.amount.$error.required && paymentForm.$submitted)}"
+									ng-class = "{'error': showError(paymentForm.amount)}"
+									amount-mask
 									only-digits
 									required>
 							<select name="currency"
 									class="dropdown" 
 									ng-model="payment.currency"
-									ng-class = "{'error': (paymentForm.currency.$error.required && paymentForm.$submitted)}"
+									ng-class = "{'error': showError(paymentForm.currency)}"
 									required>
 								<option value="rouble" selected>₽</option>
 								<option value="dollar">&dollar;</option>
@@ -53,9 +53,9 @@
 							<button class="btn-edit" ng-click="edit($event)">Edit</button>
 						</div>
 						<div class="hint">
-							<small class="help-block" ng-show="(paymentForm.amount.$error.required && paymentForm.$submitted) || (paymentForm.amount.$error.required && !paymentForm.amount.$pristine)"> Your payment is required.</small>
+							<small class="help-block" ng-show="showRequired(paymentForm.amount)"> Your payment is required.</small>
 							<small class="help-block" ng-show="paymentForm.amount.$error.maxlength"> Your payment cannot be longer than 9 characters. </small>
-							<small class="help-block" ng-show="(paymentForm.currency.$error.required && paymentForm.$submitted) || (paymentForm.currency.$error.required && !paymentForm.currency.$pristine)"> Currency is required.</small>
+							<small class="help-block" ng-show="showRequired(paymentForm.currency)"> Currency is required.</small>
 						</div>
 
 					</div><!-- form-group -->
@@ -67,13 +67,13 @@
 								name = "nameOnCard"
 								ng-model="payment.nameOnCard"
 								value="{{nameValidation()}}"
-								ng-class = "{'error': (paymentForm.nameOnCard.$error.required && paymentForm.$submitted)}"
+								ng-class = "{'error': showError(paymentForm.nameOnCard)}"
 								minlength = "3"
 								capitalize
 								name-valid
 								required>
 						<div class="hint">
-							<small class="help-block" ng-show="(paymentForm.nameOnCard.$error.required && paymentForm.$submitted) || (paymentForm.nameOnCard.$error.required && !paymentForm.nameOnCard.$pristine)"> Enter the cardholder's name.</small>
+							<small class="help-block" ng-show="showRequired(paymentForm.nameOnCard)"> Enter the cardholder's name.</small>
 							<small class="help-block" ng-show="paymentForm.nameOnCard.$error.minlength"> Your name is required to be at least 3 characters. </small>
 						</div>
 					</div><!-- form-group -->
@@ -85,11 +85,13 @@
 								name = "cardNumber"
 								ng-model="payment.cardNumber"
 								ng-minlength="16"
-								ng-class = "{'error': (paymentForm.cardNumber.$error.required && paymentForm.$submitted)}"
-								only-digits
+								ng-class = "{'error': showError(paymentForm.cardNumber)}"
+								maxlength="19"
+								maxlength="19"
+								card-mask
 								required>
 						<div class="hint">
-							<small class="help-block" ng-show="(paymentForm.cardNumber.$error.required && paymentForm.$submitted) || (paymentForm.cardNumber.$error.required && !paymentForm.cardNumber.$pristine)"> Enter the card number.</small>
+							<small class="help-block" ng-show="showRequired(paymentForm.cardNumber)"> Enter the card number.</small>
 							<small class="help-block" ng-show="paymentForm.cardNumber.$error.minlength"> Card number is required to be 16 symbols length.</small>
 						</div>
 					</div><!-- form-group -->
@@ -101,16 +103,14 @@
 								<input type="text"
 										id = "expiryDate"
 										name="expiryDate"
-										placeholder="mm / yy"
+										placeholder="mm/yy"
 										ng-model="payment.expiryDate"
-										ng-class = "{'error': (paymentForm.expiryDate.$error.required && paymentForm.$submitted)}"
-										minlength="4"
-										maxlength="4"
-										only-digits	
+										ng-class = "{'error': showError(paymentForm.expiryDate)}"
+										ng-pattern="dateMask"
+										minlength="5"
+										maxlength="5"
+										date-mask
 										required>
-								<div class="hint">
-									<small class="help-block" ng-show="(paymentForm.expiryDate.$error.required && paymentForm.$submitted) || (paymentForm.expiryDate.$error.required && !paymentForm.expiryDate.$pristine)"> Enter the expiry date.</small>
-								</div>
 							</div>
 							<div class="form-col">
 								<label for="securityCode">security code</label>
@@ -118,13 +118,23 @@
 										id="securityCode"
 										name = "securityCode"
 										ng-model = "payment.securityCode"
-										ng-class = "{'error': (paymentForm.securityCode.$error.required && paymentForm.$submitted)}"
+										ng-class = "{'error': showError(paymentForm.securityCode)}"
 										minlength="3"
 										maxlength="4"
 										only-digits		
 										required>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-col">
 								<div class="hint">
-									<small class="help-block" ng-show="(paymentForm.securityCode.$error.required && paymentForm.$submitted) || (paymentForm.securityCode.$error.required && !paymentForm.securityCode.$pristine)"> Enter the security code.</small>
+									<small class="help-block" ng-show="showRequired(paymentForm.expiryDate)"> Enter the expiry date.</small>
+									<small class="help-block" ng-show="paymentForm.expiryDate.$error.pattern">This format is invalid.</small>
+								</div>
+							</div>
+							<div class="form-col">
+								<div class="hint">
+									<small class="help-block" ng-show="showRequired(paymentForm.securityCode)"> Enter the security code.</small>
 								</div>
 							</div>
 						</div>	

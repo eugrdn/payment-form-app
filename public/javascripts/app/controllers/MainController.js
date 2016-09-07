@@ -32,6 +32,7 @@
 			$scope.disabled = !$scope.disabled;
 		};
 
+
 		$scope.pay = function(valid) {
 			if (!valid) return;
 			//debug
@@ -58,8 +59,21 @@
 					currency = '₽';
 					break;
 			}
+			console.log($scope.payment.expiryDate);
+				console.log($scope.payment.cardNumber);
 			return $sce.trustAsHtml(' ' + value + ' ' + currency);
 		};
+
+		//---------------------------config----------------------------
+		
+		$scope.showError = function (model) {
+			return (model.$error.required && $scope.paymentForm.$submitted);
+		}
+		$scope.showRequired = function (model) {
+			return	(model.$error.required && $scope.paymentForm.$submitted) || 
+					(model.$error.required && !model.$pristine);
+		}
+		$scope.dateMask = new RegExp('^(0[1-9]|1[0-2])\/([0-9]{2})$','g');
 	}
 
 })();
