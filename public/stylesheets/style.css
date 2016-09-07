@@ -73,9 +73,13 @@ section
 	align-items: center;
 	justify-content: space-between;
 }
-.form-row .form-col input{
+.form-row .form-col input
+{
 	text-align: center;
 	width: 60%;
+}
+.form-col label{
+	width: 100%;
 }
 .btn-edit
 {	
@@ -122,6 +126,11 @@ section
 	background: url(../images/lock.png) center center/contain no-repeat;
 	width: 18px;
 }
+.help-block
+{
+	color: #c00;
+	font-style: italic;
+}
 #cardNumber
 {
 	background-image: url("http://s26.postimg.org/k0sfx51x1/amex.png");
@@ -130,8 +139,6 @@ section
 	background-position: right 2px center;
 	background-size: auto 90%;
 }
-
-
 /* angular*/
 input.ng-invalid.ng-dirty,
 .error
@@ -143,14 +150,3 @@ input.ng-valid,
 {
 	border: 2px solid #00d6b7;
 }
-small{
-	color: #c00;
-	font-style: italic;
-}
-
-/*												card icons
-.icon_amex {background-image: url("http://s26.postimg.org/k0sfx51x1/amex.png");}
-.icon_discover {background-image: url("http://s26.postimg.org/g5p1ukir9/discover.png");}
-.icon_mastercard {background-image: url("http://s26.postimg.org/iw2z5i4tx/mastercard.png");}
-.icon_visa {background-image: url("http://s26.postimg.org/crgipaj1x/visa.png");}
-*/
