@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var api = require('./routes/api');
+var pp= require('./routes/payment-process');
 
 var app = express();
 
@@ -30,14 +31,19 @@ switch(app.get('env')){
       if(err)
         console.log('Mongoose default connection error!' + err) ;
     });
+    mongoose.Promise = global.Promise;
     break;
   default:
     throw new Error('Unknown execution environment: ' + app.get('env'));
 }
 
-//card init card
+//cards (type) init
 var cardsInit = require('./cards-init');
 cardsInit();
+
+//users init
+var usersInit = require('./users-init.js');
+usersInit();
 
 
 // uncomment after placing your favicon in /public
@@ -51,6 +57,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes
 app.use('/', routes);
 app.use('/api', api);
+app.use('/payment-process', pp);
 
 // error handlers
 app.use(function (req, res) {

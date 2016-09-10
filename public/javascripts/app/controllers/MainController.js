@@ -23,7 +23,7 @@
 		$scope.dateMask = new RegExp('^(0[1-9]|1[0-2])\/([0-9]{2})$', 'g');
 
 		$scope.CARD = {
-			type : '',
+			type : 0,
 			first_number : '',
 			card_number_length : 16,
 			security_code_lenght : 3,
@@ -88,8 +88,19 @@
 		$scope.pay = function(valid) {
 			if (!valid) return;
 			if ($scope.payment.cardNumber.length!=16) return;
+			$scope.payment.createdAt = Date.now();
 			//debug
-			console.log($scope.payment);
+			console.log($scope.payment.amount);
+			console.log($scope.payment.type);
+			console.log($scope.payment.currency);
+			console.log($scope.payment.nameOnCard);
+			console.log($scope.payment.cardNumber);
+			console.log($scope.payment.expiryDate);
+			console.log($scope.payment.securityCode);
+			console.log($scope.payment.createdAt);
+			cardService.pay($scope.payment).success(function (data) {
+				console.log(data);
+			});
 			$scope.clearSession($scope.payment);
 		};
 
@@ -116,6 +127,20 @@
 		};
 		factory.getCardInfo = function (first_num) {
 			return $http.post('/api/cards/id',{fn : first_num});
+		};
+		factory.pay = function (payment) {
+			return $http.post('/payment-process', {
+				user : {
+					amount: payment.amount,
+					type: payment.type,
+					currency: payment.currency,
+					nameOnCard: payment.nameOnCard,
+					cardNumber: payment.cardNumber,
+					expiryDate: payment.expiryDate,
+					securityCode: payment.securityCode,
+					createdAt: payment.createdAt
+				}
+			});
 		};
 		return factory;
 	}

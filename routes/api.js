@@ -9,7 +9,7 @@ router.route('/cards')
     .get(function (req, res) {
         Card.find(function (err, cards) {
             if(err)
-                return res.next(err);
+                return res.send(err);
             var context = cards.map(function(card){
                     return {
                         type: card.type,
@@ -30,11 +30,10 @@ router.route('/cards')
 
 router.route('/cards/id')
     .post(function (req, res) {
-       Card.find({first_number: req.body.fn} ,function (err, cards) {
+       Card.findOne({first_number: req.body.fn} ,function (err, card) {
            if(err)
-               return err;
-           var context = cards.map(function(card){
-               return {
+               return res.send(err);
+           var context = {
                    type: card.type,
                    first_number : card.first_number,
                    card_number_length : card.card_number_length,
@@ -42,8 +41,7 @@ router.route('/cards/id')
                    logo : card.logo,
                    hint : card.hint
                };
-           });
-           return res.json(context[0]);
+           return res.json(context);
        })
     });
 
