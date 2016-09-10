@@ -131,9 +131,13 @@ section
 	color: #c00;
 	font-style: italic;
 }
+.help-block-2
+{
+	color: #bebebe;
+	font-style: italic;
+}
 #cardNumber
 {
-	background-image: url("http://s26.postimg.org/k0sfx51x1/amex.png");
 	background-repeat: no-repeat;
 	padding-right: 50px;
 	background-position: right 2px center;
@@ -149,4 +153,44 @@ input.ng-valid,
 .dropdown.ng-valid
 {
 	border: 2px solid #00d6b7;
+}
+
+/*hint*/
+div.tooltips {
+	position: relative;
+	top: 15px;
+	right: 20px;
+	display: inline;
+}
+div.tooltips span {
+	background-repeat: no-repeat;
+	padding-right: 20px;
+	background-position: center;
+	background-size: auto 70%;
+	position: absolute;
+	width:120px;
+	height: 100px;
+	line-height: 30px;
+	visibility: hidden;
+	border-radius: 6px;
+}
+div.tooltips span:after {
+	content: '';
+	position: absolute;
+	top: 85%;
+	left: 50%;
+	margin-left: -8px;
+	width: 0; height: 0;
+	border-top: 8px solid #000000;
+	border-right: 8px solid transparent;
+	border-left: 8px solid transparent;
+	opacity: 0.8;
+}
+div:hover.tooltips span {
+	visibility: visible;
+	opacity: 0.8;
+	bottom: 15px;
+	left: 50%;
+	margin-left: -60px;
+	z-index: 999;
 }

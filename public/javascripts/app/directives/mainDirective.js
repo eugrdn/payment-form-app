@@ -9,8 +9,7 @@
 		.directive('dateMask', dateMask)
 		.directive('cardMask', cardMask);
 
-
-	capitalize.$injector = [];
+	capitalize.$inject = [];
 
 	function nameValidate() {
 		return {
@@ -33,7 +32,7 @@
 		}
 	}
 
-	capitalize.$injector = [];
+	capitalize.$inject = [];
 
 	function capitalize() {
 		return {
@@ -55,7 +54,7 @@
 		}
 	}
 
-	onlyDigits.$injector = [];
+	onlyDigits.$inject = [];
 
 	function onlyDigits() {
 		return {
@@ -77,7 +76,7 @@
 		}
 	}
 
-	stopCCP.$injector = [];
+	stopCCP.$inject = [];
 
 	function stopCCP() {
 		return {
@@ -92,7 +91,7 @@
 		};
 	}
 
-	amountMask.$injector = [];
+	amountMask.$inject = [];
 
 	function amountMask() {
 		return {
@@ -114,7 +113,7 @@
 		}
 	}
 
-	dateMask.$injector = [];
+	dateMask.$inject = [];
 
 	function dateMask() {
 		return {
@@ -139,7 +138,7 @@
 		}
 	}
 
-	cardMask.$injector = [];
+	cardMask.$inject = [];
 
 	function cardMask() {
 		return {
