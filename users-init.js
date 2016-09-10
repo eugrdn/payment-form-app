@@ -15,7 +15,7 @@ module.exports = function () {
         }).save();
 
         new User({
-            bank_account_value: 0,
+            bank_account_value: 100,
             type: 'American Express',
             nameOnCard: 'PAVEL TECH',
             cardNumber: 3333333333333333,

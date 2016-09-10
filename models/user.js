@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var DOLLAR = 1.12528,
-    POUND = 0.84631,
-    RUB = 72.3355;
+var DOLLAR = 0.88856,
+    POUND = 1.18135,
+    RUB = 0.01381;
 
 var userSchema = mongoose.Schema({
     bank_account_value: Number,
