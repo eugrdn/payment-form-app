@@ -4,7 +4,6 @@ body
 	margin: 0;
 	padding: 0;
 	background-color: #fff;
-
 }
 #container
 {
@@ -12,37 +11,37 @@ body
 	margin: 3em auto;
 	color: #222;
 	background-color: #00d6b7;
-	box-shadow: 0px 1px 8px #bebebe;
+	box-shadow: 0 1px 8px #bebebe;
 }
 .header
-{	
+{
+	box-sizing: border-box;
 	width: 100%;
 	margin: auto;
 	padding: 10px;
 	text-align: center;
-	box-sizing: border-box;
 }
 input,
 .btn-pay
 {
 	font-size: 1.3em;
 	display: inline-block;
+	box-sizing: border-box;
 	width: 100%;
 	margin: 8px 0;
 	padding: 8px 12px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-shadow: inset 0 1px 3px #ddd;
-	box-sizing: border-box;
 }
 input:focus,
 .dropdown:focus,
-button:focus 
+button:focus
 {
 	outline: none;
 }
 .dropdown
-{	
+{
 	margin: 8px 0;
 	padding: 11px 3px;
 	border-radius: 4px;
@@ -53,7 +52,7 @@ button:focus
 	width: 70%;
 }
 section
-{	
+{
 	display: block;
 	margin-top: 0;
 	padding: 15px 30px;
@@ -61,8 +60,8 @@ section
 }
 .form-group label
 {
-	width: 150px;
 	display: block;
+	width: 150px;
 	margin-top: 10px;
 	text-transform: capitalize;
 }
@@ -75,14 +74,15 @@ section
 }
 .form-row .form-col input
 {
-	text-align: center;
 	width: 60%;
+	text-align: center;
 }
-.form-col label{
+.form-col label
+{
 	width: 100%;
 }
 .btn-edit
-{	
+{
 	font-family: 'Lucida Grande', Verdana;
 	margin: 8px 0;
 	padding: 12px 12px;
@@ -92,8 +92,8 @@ section
 }
 .btn-pay
 {
-	width: auto;
 	display: block;
+	width: auto;
 	margin: 20px auto;
 	margin-bottom: 0;
 	border: 2px solid #00d6b7;
@@ -103,43 +103,42 @@ section
 .btn-edit:hover
 {
 	cursor: pointer;
-	background-color: #00d6b7;
-	border-radius: 4px;
 	transition: .2s linear;
-
+	border-radius: 4px;
+	background-color: #00d6b7;
 }
 .btn-pay:hover
 {
 	cursor: pointer;
-	background-color: #fff;
 	transition: .2s linear;
+	background-color: #fff;
 }
 .btn-lock
 {
+	display: inline-block;
+	width: 18px;
 	height: 18px;
-	border-color: transparent;
 	margin-top: -2px;
 	margin-right: 5px;
-	display: inline-block;
 	vertical-align: middle;
-	background-position:center;
+	border-color: transparent;
 	background: url(../images/lock.png) center center/contain no-repeat;
-	width: 18px;
+	background-position: center;
 }
 .help-block
 {
-	color: #c00;
 	font-style: italic;
+	color: #c00;
 }
 .help-block-2
 {
-	color: #bebebe;
 	font-style: italic;
+	color: #bebebe;
 }
 #cardNumber
 {
-	background-repeat: no-repeat;
 	padding-right: 50px;
+	background-repeat: no-repeat;
 	background-position: right 2px center;
 	background-size: auto 90%;
 }
@@ -147,50 +146,54 @@ section
 input.ng-invalid.ng-dirty,
 .error
 {
-	border: 2px solid red; 
+	border: 2px solid red;
 }
 input.ng-valid,
 .dropdown.ng-valid
 {
 	border: 2px solid #00d6b7;
 }
-
 /*hint*/
-div.tooltips {
+div.tooltips
+{
 	position: relative;
 	top: 15px;
 	right: 20px;
 	display: inline;
 }
-div.tooltips span {
-	background-repeat: no-repeat;
+div.tooltips span
+{
+	line-height: 30px;
+	position: absolute;
+	visibility: hidden;
+	width: 120px;
+	height: 100px;
 	padding-right: 20px;
+	border-radius: 6px;
+	background-repeat: no-repeat;
 	background-position: center;
 	background-size: auto 70%;
-	position: absolute;
-	width:120px;
-	height: 100px;
-	line-height: 30px;
-	visibility: hidden;
-	border-radius: 6px;
 }
-div.tooltips span:after {
-	content: '';
+div.tooltips span:after
+{
 	position: absolute;
 	top: 85%;
 	left: 50%;
+	width: 0;
+	height: 0;
 	margin-left: -8px;
-	width: 0; height: 0;
-	border-top: 8px solid #000000;
+	content: '';
+	opacity: .8;
+	border-top: 8px solid #000;
 	border-right: 8px solid transparent;
 	border-left: 8px solid transparent;
-	opacity: 0.8;
 }
-div:hover.tooltips span {
-	visibility: visible;
-	opacity: 0.8;
+div:hover.tooltips span
+{
+	z-index: 999;
 	bottom: 15px;
 	left: 50%;
+	visibility: visible;
 	margin-left: -60px;
-	z-index: 999;
+	opacity: .8;
 }

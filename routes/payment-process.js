@@ -4,5 +4,12 @@ var pp = require('../handlers/payment-process.js');
 
 router.post('/', pp.post);
 
-module.exports = router;
+router.get('/completed', function(req, res) {
+	res.render('payment-success');
+});
 
+router.get('/canceled', function(req, res) {
+	res.render('payment-error');
+});
+
+module.exports = router;

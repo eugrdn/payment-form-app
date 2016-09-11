@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  .error-message
+    img(src='/images/payment-status/error.png', alt='error')
+    | &#x9;&#x9;
+    h2.error-message__title Payment Canceled
+    | &#x9;&#x9;
+    .error-message__content
+      a(href='/') Back to form
