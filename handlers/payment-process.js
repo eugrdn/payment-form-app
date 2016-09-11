@@ -2,7 +2,7 @@ var history = require('../models/payment_transfer.js');
 var User = require('../models/user.js');
 
 exports.post = function(req, res) {
-    var user = req.body.user;
+    var user = req.body.payment;
 
     var query = {
         cardNumber: parseInt(user.cardNumber),

@@ -8,9 +8,10 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 		<!-- Angular Custom -->
 		<script src="javascripts/app.js"></script>
-		<script src="javascripts/app/controllers/MainController.js"></script>
-		<script src="javascripts/app/directives/mainDirective.js"></script>
-		<script src="javascripts/app/services/mainService.js"></script>
+		<script src="javascripts/app/controllers/PaymentFormController.js"></script>
+		<script src="javascripts/app/services/cardService.js"></script>
+		<script src="javascripts/app/services/paymentService.js"></script>
+		<script src="javascripts/app/directives.js"></script>
 	</head>
 	<body ng-app="paymentApp">
 		<header>
@@ -23,7 +24,7 @@
 			<div class="header">
 				<h3>Payment Process</h3>
 			</div>
-			<section ng-controller = "MainController">
+			<section ng-controller = "PaymentFormController">
 				<form name="paymentForm" class = "form-pay" ng-submit="pay(paymentForm.$valid)" stop-ccp novalidate>
 					<div class = "form-group">
 						<label for="paymentAmount">payment amount</label>
@@ -67,6 +68,7 @@
 								value="{{nameValidation()}}"
 								ng-class = "{'error': showError(paymentForm.nameOnCard)}"
 								ng-minlength = "3"
+							    maxlength="30"
 								capitalize
 								name-valid
 								required>

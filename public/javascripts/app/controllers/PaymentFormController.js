@@ -1,13 +1,9 @@
 (function() {
-	MainController.$injector = [cardService];
-
-
 	angular.module('paymentApp.controllers')
-		.factory('cardService', cardService)
-		.controller('MainController', MainController);
+		.controller('PaymentFormController', PaymentFormController);
 
-	MainController.$inject = ['$scope', '$sce', 'cardService'];
-	function MainController($scope, $sce, cardService) {
+	PaymentFormController.$inject = ['cardService','paymentService', '$scope', '$sce'];
+	function PaymentFormController(cardService,paymentService, $scope, $sce) {
 
 		//---------------------------config----------------------------
 
@@ -98,7 +94,7 @@
 			console.log($scope.payment.expiryDate);
 			console.log($scope.payment.securityCode);
 			console.log($scope.payment.createdAt);
-			cardService.pay($scope.payment).success(function (data) {
+			paymentService.pay($scope.payment).success(function (data) {
 				console.log(data);
 			});
 			$scope.clearSession($scope.payment);
@@ -110,39 +106,5 @@
 			}
 		};
 
-		/*
-		* all cards data
-		*/
-		cardService.getAll().success(function (data) {
-			$scope.cards = data;
-		});
-
 	}
- 		// ------factory-----------------
-	cardService.$inject = ['$http'];
-	function cardService($http) {
-		var factory = {};
-		factory.getAll = function () {
-			return $http.get('/api/cards');
-		};
-		factory.getCardInfo = function (first_num) {
-			return $http.post('/api/cards/id',{fn : first_num});
-		};
-		factory.pay = function (payment) {
-			return $http.post('/payment-process', {
-				user : {
-					amount: payment.amount,
-					type: payment.type,
-					currency: payment.currency,
-					nameOnCard: payment.nameOnCard,
-					cardNumber: payment.cardNumber,
-					expiryDate: payment.expiryDate,
-					securityCode: payment.securityCode,
-					createdAt: payment.createdAt
-				}
-			});
-		};
-		return factory;
-	}
-
 })();

@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+// converting coefficients
 var DOLLAR = 0.88856,
     POUND = 1.18135,
     RUB = 0.01381;
