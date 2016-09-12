@@ -68,6 +68,8 @@ P.S.
 
 Also for security improvement I used `HTTPS` protocol, with own created sertificate that can be found in dir `/ssl` catalogue.
 
+Available card types can be found at `https://localhost/api/cards`.
+
 All Angular code placed into modules.
 
 ## Installation

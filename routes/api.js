@@ -29,6 +29,8 @@ router.route('/cards/id')
 		}, function(err, card) {
 			if (err)
 				return res.send(err);
+			if(card == null)
+				return res.send('this type of card not found!');
 			var context = {
 				type: card.type,
 				first_number: card.first_number,
