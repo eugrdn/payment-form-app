@@ -73,7 +73,7 @@ All Angular code placed into modules.
 ## Installation
 
 ```bash
-git clone https://github.com/rodinwow/.git
+git clone https://github.com/rodinwow/payment-form-app.git
 cd payment-form-app
 npm install
 npm start
