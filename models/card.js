@@ -6,7 +6,8 @@ var cardSchema = mongoose.Schema({
 	card_number_length: Number,
 	security_code_lenght: Number,
 	logo: String,
-	hint: String
+	hint: String,
+	regex: String
 });
 
 var Card = mongoose.model('Card', cardSchema);

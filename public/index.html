@@ -14,12 +14,6 @@
 		<script src="javascripts/app/directives.js"></script>
 	</head>
 	<body ng-app="paymentApp">
-		<header>
-			<!-- Header -->
-		</header>
-		<nav>
-			<!-- Navigation Bar -->
-		</nav>
 		<div id="container">
 			<div class="header">
 				<h3>Payment Process</h3>
@@ -36,10 +30,10 @@
 									ng-minlength="1"
 									ng-maxlength="9"
 								   	maxlength="9"
+								   	onkeypress="return event.keyCode >= 48 && event.keyCode <= 57"
 									ng-disabled="disabled";
 									ng-class = "{'error': showError(paymentForm.amount)}"
 									amount-mask
-									only-digits
 									required>
 							<select name="currency"
 									class="dropdown" 
@@ -65,7 +59,6 @@
 								id = "nameOnCard"
 								name = "nameOnCard"
 								ng-model="payment.nameOnCard"
-								value="{{nameValidation()}}"
 								ng-class = "{'error': showError(paymentForm.nameOnCard)}"
 								ng-minlength = "3"
 							    maxlength="30"
@@ -85,13 +78,16 @@
 							   ng-model="payment.cardNumber"
 							   ng-class = "{'error': showError(paymentForm.cardNumber)}"
 							   maxlength="19"
+							   onkeypress="return event.keyCode >= 48 && event.keyCode <= 57"
 							   ng-maxlength = "{{CARD.card_number_length + 3}}"
 							   card-mask
 							   ng-style="{'background-image': 'url(' +  CARD.logo +')'}"
 							   required>
 						<div class="hint">
 							<small class="help-block" ng-show="showRequired(paymentForm.cardNumber)"> Enter the card number.</small>
-							<small class="help-block-2" ng-show="payment.cardNumber.length >= 1 && payment.cardNumber.length < 16"> Card number is required to be 16 symbols length.</small>
+							<small class="help-block" ng-show="isInvalid()"> Card number is not valid.</small>
+							<small class="help-block-2" ng-show="CARD.type=='none' && payment.cardNumber.length>=1"> This type of card is not supported.</small>
+							<small class="help-block-2" ng-show="payment.cardNumber.length >= 1 && payment.cardNumber.length < 16 && CARD.type !='none'"> Card number is required to be 16 symbols length.</small>
 						</div>
 					</div><!-- form-group -->
 					<div class="form-group">
@@ -102,6 +98,7 @@
 										id = "expiryDate"
 										name="expiryDate"
 										placeholder="mm/yy"
+										onkeypress="return event.keyCode >= 48 && event.keyCode <= 57"
 										ng-model="payment.expiryDate"
 										ng-class = "{'error': showError(paymentForm.expiryDate)}"
 										ng-pattern="dateMask"
@@ -119,12 +116,15 @@
 										ng-class = "{'error': showError(paymentForm.securityCode)}"
 										minlength="{{CARD.security_code_lenght}}"
 										maxlength="{{CARD.security_code_lenght}}"
-										only-digits		
+										onkeypress="return event.keyCode >= 48 && event.keyCode <= 57"	
 										required>
 							</div>
 							<div class="form-col">
 								<div class="tooltips" href="#">
-									<img src="../images/question.png" alt=""><div><span ng-style="{'background-image': 'url(' + CARD.hint +')'}"></span></div>
+									<img src="images/question.png" alt="">
+									<div>
+										<span ng-style="{'background-image': 'url(' + CARD.hint +')'}"></span>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -143,13 +143,10 @@
 						</div>
 					</div><!-- form-group -->
 					<button type="submit" value = "Pay {{payment.amount}}" class ="btn-pay">
-						<span class="btn-lock"></span>Pay<span></span><span ng-bind-html="renderAmount(payment.amount,payment.currency)"></span>
+						Pay<span></span><span ng-bind-html="renderAmount(payment.amount,payment.currency)"></span><span class="btn-lock"></span>
 					</button>
 				</form>
 			</section>
 		</div><!-- container -->
-		<footer>
-			<!-- Footer -->
-		</footer>
 	</body>
 </html>

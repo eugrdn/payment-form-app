@@ -15,7 +15,8 @@ router.route('/cards')
 				card_number_length: card.card_number_length,
 				security_code_lenght: card.security_code_lenght,
 				logo: card.logo,
-				hint: card.hint
+				hint: card.hint,
+				regex: card.regex
 			};
 		});
 		return res.json(context);
@@ -25,7 +26,7 @@ router.route('/cards')
 router.route('/cards/id')
 	.post(function(req, res) {
 		Card.findOne({
-			first_number: req.body.fn
+			type: req.body.type
 		}, function(err, card) {
 			if (err)
 				return res.send(err);
@@ -37,7 +38,8 @@ router.route('/cards/id')
 				card_number_length: card.card_number_length,
 				security_code_lenght: card.security_code_lenght,
 				logo: card.logo,
-				hint: card.hint
+				hint: card.hint,
+				regex: card.regex
 			};
 			return res.json(context);
 		})

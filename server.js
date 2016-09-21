@@ -40,7 +40,7 @@ switch (app.get('env')) {
 }
 
 //cards (type) init
-var cardsInit = require('./cards-init');
+var cardsInit = require('./cards-init.js');
 cardsInit();
 
 //users init

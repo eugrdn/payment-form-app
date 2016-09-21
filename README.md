@@ -54,12 +54,13 @@ The user's data, that used in application, is contained in 3 models:
 * Card - represents a data of different kinds of credit cards. Example:
 ```
 {
-    "type": "MasterCard",
+    "type": "mastercard",
     "first_number": 5,
     "card_number_length": 16,
     "security_code_lenght": 3,
     "logo": "https://s26.postimg.org/iw2z5i4tx/mastercard.png",
-    "hint": "../images/card_tooltips/nonamex.png"
+    "hint": "../images/card_tooltips/nonamex.png",
+    "regex": "^5[1-5][0-9]{14}$"
 }
 ```
 Of course, this data applicable only for presentation, but it helps to understand how app is working. 
@@ -99,7 +100,7 @@ I've created two bank accounts to demonstrate different results of payment proce
 	bank account value: 83 € (or less)
 	name: Pavel Tech
 	card type: American Express
-	card number: 3333 3333 3333 3333
+	card number: 3733 3333 3333 3333
 	expiry date: 03/33
 	security code: 333
 ```

@@ -17,6 +17,14 @@
 			require: 'ngModel',
 			link: function(scope, elt, attrs, ngModel) {
 
+				elt.bind('keypress', function(e) {
+					if (e.charCode > 31 && (e.charCode < 65 || e.charCode > 90) &&
+						(e.charCode < 97 || e.charCode > 122) && e.charCode != 32) {
+						return e.preventDefault();
+					}
+					return true;
+				});
+
 				ngModel.$parsers.push(function(val) {
 					if (val == undefined)
 						val = '';
@@ -62,16 +70,6 @@
 			require: 'ngModel',
 			link: function(scope, elt, attrs, ngModel) {
 
-				ngModel.$parsers.unshift(function(val) {
-					if (val == undefined)
-						val = '';
-					var digit = val.replace(/[^0-9]/g, '');
-					if (val !== digit) {
-						ngModel.$setViewValue(digit);
-						ngModel.$render();
-					}
-					return digit;
-				});
 			}
 		}
 	}

@@ -9,9 +9,9 @@
 		factory.getAll = function() {
 			return $http.get('/api/cards');
 		};
-		factory.getCardInfo = function(first_num) {
+		factory.getCardInfo = function(card) {
 			return $http.post('/api/cards/id', {
-				fn: first_num
+				type: card
 			});
 		};
 		return factory;

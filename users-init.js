@@ -7,7 +7,7 @@ module.exports = function() {
 
 		new User({
 			bank_account_value: 1000000000,
-			type: 'Visa',
+			type: 'visa',
 			nameOnCard: 'MARK ZUCKERBERG',
 			cardNumber: 4444444444444444,
 			expiryDate: "0444",
@@ -16,9 +16,9 @@ module.exports = function() {
 
 		new User({
 			bank_account_value: 100,
-			type: 'American Express',
+			type: 'amex',
 			nameOnCard: 'PAVEL TECH',
-			cardNumber: 3333333333333333,
+			cardNumber: 3733333333333333,
 			expiryDate: "0333",
 			securityCode: 3333
 		}).save();
