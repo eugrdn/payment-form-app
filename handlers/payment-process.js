@@ -14,18 +14,22 @@ exports.post = function(req, res) {
 	User.findOne(query, function(err, _user) {
 		if (err)
 			return res.send(err);
-
 		if (!_user)
 			return res.send({
 				status: 401
 			});
-		if (!_user.isPaymentPossible(user.amount))
+		
+		var convertedAmount = _user.convertAmount(user.currency, user.amount);
+
+		if (!_user.isPaymentPossible(convertedAmount))
 			return res.send({
 				status: 401
 			});
 
+
 		var previousBankAccountValue = _user.bank_account_value;
-		var convertedAmount = _user.convertAmount(user.currency, user.amount);
+
+		console.log(user.currency, user.amount, convertedAmount);
 
 		_user.bank_account_value -= convertedAmount;
 		_user.save(function(err) {

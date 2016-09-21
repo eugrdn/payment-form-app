@@ -14,7 +14,7 @@ var userSchema = mongoose.Schema({
 });
 
 userSchema.methods.isPaymentPossible = function(amount) {
-	return this.bank_account_value > amount ? true : false;
+	return this.bank_account_value >= amount ? true : false;
 };
 
 userSchema.methods.convertAmount = function(currency, amount) {

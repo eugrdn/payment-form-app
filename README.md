@@ -32,7 +32,7 @@ The user's data, that used in application, is contained in 3 models:
 ```
 {
     "bank_account_value": 999943573,
-    "type": "Visa",
+    "type": "visa",
     "nameOnCard": "MARK ZUCKERBERG",
     "cardNumber": 4444444444444444,
     "expiryDate": "0444",
@@ -90,7 +90,7 @@ I've created two bank accounts to demonstrate different results of payment proce
 ```
 	bank account value: 999943573 € (or less)
 	name: Mark Zuckerberg
-	card type: Visa
+	card type: visa
 	card number: 4444 4444 4444 4444
 	expiry date: 04/44
 	security code: 444
@@ -99,7 +99,7 @@ I've created two bank accounts to demonstrate different results of payment proce
 ```
 	bank account value: 83 € (or less)
 	name: Pavel Tech
-	card type: American Express
+	card type: amex
 	card number: 3733 3333 3333 3333
 	expiry date: 03/33
 	security code: 333
