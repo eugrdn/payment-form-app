@@ -4,7 +4,6 @@
 		.directive('stopCcp', stopCCP)
 		.directive('capitalize', capitalize)
 		.directive('nameValid', nameValidate)
-		.directive('onlyDigits', onlyDigits)
 		.directive('amountMask', amountMask)
 		.directive('dateMask', dateMask)
 		.directive('cardMask', cardMask);
@@ -58,18 +57,6 @@
 					}
 					return capitalized;
 				});
-			}
-		}
-	}
-
-	onlyDigits.$inject = [];
-
-	function onlyDigits() {
-		return {
-			restict: 'A',
-			require: 'ngModel',
-			link: function(scope, elt, attrs, ngModel) {
-
 			}
 		}
 	}
