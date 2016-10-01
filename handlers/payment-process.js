@@ -18,7 +18,7 @@ exports.post = function(req, res) {
 			return res.send({
 				status: 401
 			});
-		
+
 		var convertedAmount = _user.convertAmount(user.currency, user.amount);
 
 		if (!_user.isPaymentPossible(convertedAmount))
@@ -28,8 +28,6 @@ exports.post = function(req, res) {
 
 
 		var previousBankAccountValue = _user.bank_account_value;
-
-		console.log(user.currency, user.amount, convertedAmount);
 
 		_user.bank_account_value -= convertedAmount;
 		_user.save(function(err) {

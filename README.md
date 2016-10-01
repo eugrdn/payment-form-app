@@ -83,6 +83,27 @@ npm start
 # in browser
 https://localhost:3000
 ```
+*Attention*
+
+Don't forget to change userURI
+```
+{
+    "mongoose": {
+        "options": {
+            "config": {
+                "autoIndex": false
+            },
+            "server": {
+                "socketOptions": {
+                    "keepAlive": 1
+                }
+            }
+        },
+        "userURI": "YOUR MONGOLAB USER CONNECTION"
+    }
+}
+```
+
 ## Using
 I've created two bank accounts to demonstrate different results of payment processes:
 

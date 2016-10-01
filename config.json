@@ -1,0 +1,15 @@
+{
+	"mongoose": {
+		"options": {
+			"config": {
+				"autoIndex": false
+			},
+			"server": {
+				"socketOptions": {
+					"keepAlive": 1
+				}
+			}
+		},
+		"userURI": "YOUR MONGOLAB USER CONNECTION"
+	}
+}

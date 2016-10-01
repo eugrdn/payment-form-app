@@ -21,7 +21,7 @@ router.route('/cards')
 		});
 		return res.json(context);
 	});
-})
+});
 
 router.route('/cards/id')
 	.post(function(req, res) {

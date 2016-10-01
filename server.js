@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var config = require('./config');
 
 var routes = require('./routes/index');
 var api = require('./routes/api');
@@ -17,19 +18,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 //mongoose init
-var options = {
-	config: {
-		autoIndex: false
-	},
-	server: {
-		socketOptions: {
-			keepAlive: 1
-		}
-	}
-};
+var options = config.mongoose.options;
+
 switch (app.get('env')) {
 	case 'development':
-		mongoose.connect('mongodb://root:12345678@ds021356.mlab.com:21356/payment_db', options, function(err) {
+		mongoose.connect(config.mongoose.userURI, options, function(err) {
 			if (err)
 				console.log('Mongoose default connection error!' + err);
 		});
