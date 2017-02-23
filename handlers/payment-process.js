@@ -12,27 +12,29 @@ exports.post = function(req, res) {
 	};
 
 	User.findOne(query, function(err, _user) {
-		if (err)
-			return res.send(err);
+		var convertedAmount;
+		var previousBankAccountValue;
+		
+		if (err) return res.send(err);
+
 		if (!_user)
 			return res.send({
 				status: 401
 			});
 
-		var convertedAmount = _user.convertAmount(user.currency, user.amount);
+		convertedAmount = _user.convertAmount(user.currency, user.amount);
 
 		if (!_user.isPaymentPossible(convertedAmount))
 			return res.send({
 				status: 401
 			});
 
-
-		var previousBankAccountValue = _user.bank_account_value;
+		previousBankAccountValue = _user.bank_account_value;
 
 		_user.bank_account_value -= convertedAmount;
+		
 		_user.save(function(err) {
-			if (err)
-				return res.send(err);
+			if (err) return res.send(err);
 		});
 
 		new Transfer({
@@ -44,8 +46,7 @@ exports.post = function(req, res) {
 			currency: user.currency,
 			createdAt: user.createdAt
 		}).save(function(err) {
-			if (err)
-				return res.send(err);
+			if (err) return res.send(err);
 		});
 
 		return res.send({

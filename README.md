@@ -76,7 +76,7 @@ All Angular code placed into modules.
 ## Installation
 
 ```bash
-git clone https://github.com/rodinwow/payment-form-app.git
+git clone https://github.com/eugrdn/payment-form-app.git
 cd payment-form-app
 npm install
 npm start
@@ -125,3 +125,7 @@ I've created two bank accounts to demonstrate different results of payment proce
 	expiry date: 03/33
 	security code: 333
 ```
+
+### Preview:
+
+![alt tag](https://github.com/eugrdn/screenshots/blob/master/payment-form.png)

@@ -6,9 +6,10 @@ router.route('/cards')
 
 .get(function(req, res) {
 	Card.find(function(err, cards) {
-		if (err)
-			return res.send(err);
-		var context = cards.map(function(card) {
+		
+		if (err) return res.send(err);
+
+		var context = cards.map(function(card) {	
 			return {
 				type: card.type,
 				first_number: card.first_number,
@@ -19,6 +20,7 @@ router.route('/cards')
 				regex: card.regex
 			};
 		});
+
 		return res.json(context);
 	});
 });
@@ -28,10 +30,12 @@ router.route('/cards/id')
 		Card.findOne({
 			type: req.body.type
 		}, function(err, card) {
-			if (err)
-				return res.send(err);
-			if(card == null)
-				return res.send('this type of card not found!');
+			var context;
+
+			if (err) return res.send(err);
+
+			if (!card) return res.send('this type of card not found!');
+
 			var context = {
 				type: card.type,
 				first_number: card.first_number,
@@ -41,6 +45,7 @@ router.route('/cards/id')
 				hint: card.hint,
 				regex: card.regex
 			};
+
 			return res.json(context);
 		})
 	});

@@ -3,6 +3,7 @@ var User = require('./models/user.js');
 
 module.exports = function() {
 	User.find(function(err, users) {
+		
 		if (users.length) return;
 
 		new User({

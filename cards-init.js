@@ -3,6 +3,7 @@ var Card = require('./models/card.js');
 
 module.exports = function() {
 	Card.find(function(err, cards) {
+		
 		if (cards.length) return;
 
 		new Card({

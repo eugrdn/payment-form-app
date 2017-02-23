@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+	
 	angular.module('paymentApp.controllers', []);
 	angular.module('paymentApp.directives', []);
 	angular.module('paymentApp.services', []);

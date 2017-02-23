@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+	
 	angular.module('paymentApp.services')
 		.factory('paymentService', paymentService);
 
@@ -6,6 +8,7 @@
 
 	function paymentService($http) {
 		var factory = {};
+
 		factory.pay = function(payment) {
 			return $http.post('/payment-process', {
 				payment: {
@@ -20,6 +23,7 @@
 				}
 			});
 		};
+
 		return factory;
 	}
 

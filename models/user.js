@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
+
 // converting coefficients
-var DOLLAR = 0.88856,
-	POUND = 1.18135,
-	RUB = 0.01381;
+var DOLLAR = 0.88856;
+var POUND = 1.18135;
+var RUB = 0.01381;
 
 var userSchema = mongoose.Schema({
 	bank_account_value: Number,
@@ -14,11 +15,12 @@ var userSchema = mongoose.Schema({
 });
 
 userSchema.methods.isPaymentPossible = function(amount) {
-	return this.bank_account_value >= amount ? true : false;
+	return this.bank_account_value >= amount;
 };
 
 userSchema.methods.convertAmount = function(currency, amount) {
 	var _amount = amount;
+
 	switch (currency) {
 		case 'dollar':
 			_amount = convertToDollar(_amount);
@@ -32,6 +34,7 @@ userSchema.methods.convertAmount = function(currency, amount) {
 		case 'euro':
 			break;
 	}
+	
 	return _amount;
 };
 

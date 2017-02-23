@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	angular.module('paymentApp.controllers')
 		.controller('PaymentFormController', PaymentFormController);
 
@@ -7,7 +9,7 @@
 	function PaymentFormController(cardService, paymentService, $scope, $sce, $window) {
 
 		$scope.showError = function(model) {
-			return (model.$error.required && $scope.paymentForm.$submitted);
+			return model.$error.required && $scope.paymentForm.$submitted;
 		};
 
 		$scope.showRequired = function(model) {
@@ -17,12 +19,10 @@
 
 		$scope.disabled = true;
 
-
 		$scope.edit = function($event) {
 			$event.preventDefault();
 			$scope.disabled = !$scope.disabled;
 		};
-
 
 		//---------------------------payment transfer----------------------------
 
@@ -39,8 +39,9 @@
 
 		$scope.renderAmount = function(value, currency) {
 			var value = value || '';
-			if (!value)
-				currency = '';
+
+			if (!value) currency = '';
+
 			switch (currency) {
 				case 'dollar':
 					currency = '&#36;';
@@ -55,18 +56,21 @@
 					currency = 'P';
 					break;
 			}
+
 			return $sce.trustAsHtml(' ' + value + ' ' + currency);
 		};
 
 		$scope.pay = function(valid) {
 			if (!valid) return;
-			if ($scope.payment.cardNumber.length != 16) return;
+
+			if ($scope.payment.cardNumber.length !== 16) return;
+
 			$scope.payment.createdAt = Date.now();
+
 			paymentService.pay($scope.payment).success(function(response) {
-				if (response.status == 200) {
+				if (response.status === 200) {
 					$window.location.href = '/payment-process/completed';
-				}
-				if (response.status == 401) {
+				} else if (response.status === 401) {
 					$window.location.href = '/payment-process/canceled';
 				}
 			});
@@ -86,12 +90,17 @@
 		};
 
 		$scope.$watch('payment.cardNumber', function(card_num) {
+			var num_input;
+			var first_num;
+
 			if (!card_num) {
 				$scope.CARD.logo = '';
 				$scope.CARD.hint = 'images/card_tooltips/none.png';
 				return;
 			}
-			var num_input = angular.element(document.querySelector('#cardNumber'));
+
+			num_input = angular.element(document.querySelector('#cardNumber'));
+
 			if ($scope.isInvalid()) {
 				num_input.removeClass('ng-valid');
 				num_input.addClass('error');
@@ -99,29 +108,30 @@
 				num_input.addClass('ng-valid');
 				num_input.removeClass('error');
 			}
-			if (card_num.length != 1) return;
-			var first_num = card_num[0];
+
+			if (card_num.length !== 1) return;
+
+			first_num = card_num[0];
+
 			$scope.getCardDescription(first_num);
 		});
 
 		$scope.isInvalid = function() {
 			var card_num = $scope.payment.cardNumber;
-			if (card_num == undefined || card_num == '')
-				return;
-			if (card_num.length != $scope.CARD.card_number_length)
-				return;
+			var card_regex;
 
-			var card_regex = new RegExp($scope.CARD.regex);
+			if (!card_num) return;
 
-			if (card_num.match(card_regex)) {
-				return false;
-			} else {
-				return true;
-			}
+			if (card_num.length !== $scope.CARD.card_number_length) return;
+
+			card_regex = new RegExp($scope.CARD.regex);
+
+			return !card_num.match(card_regex);
 		};
 
 		$scope.getCardDescription = function(first_num) {
 			var card = '';
+
 			switch (first_num) {
 				case '3':
 					card = 'amex';
@@ -138,6 +148,7 @@
 				default:
 					card = 'none';
 			}
+
 			cardService.getCardInfo(card).success(function(data) {
 				$scope.CARD = data;
 				$scope.payment.type = $scope.CARD.type;
