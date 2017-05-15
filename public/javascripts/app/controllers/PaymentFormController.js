@@ -67,7 +67,7 @@
 
 			$scope.payment.createdAt = Date.now();
 
-			paymentService.pay($scope.payment).success(function(response) {
+			paymentService.pay($scope.payment).then(function(response) {
 				if (response.status === 200) {
 					$window.location.href = '/payment-process/completed';
 				} else if (response.status === 401) {
@@ -149,8 +149,8 @@
 					card = 'none';
 			}
 
-			cardService.getCardInfo(card).success(function(data) {
-				$scope.CARD = data;
+			cardService.getCardInfo(card).then(function(success) {
+				$scope.CARD = success.data;
 				$scope.payment.type = $scope.CARD.type;
 			});
 		};

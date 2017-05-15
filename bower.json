@@ -1,0 +1,10 @@
+{
+  "name": "payment-form-app",
+  "description": "",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.5.x"
+  }
+}

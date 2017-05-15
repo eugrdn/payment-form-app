@@ -9,7 +9,7 @@
 		.directive('dateMask', dateMask)
 		.directive('cardMask', cardMask);
 
-	capitalize.$inject = [];
+	nameValidate.$inject = [];
 
 	function nameValidate() {
 		return {
