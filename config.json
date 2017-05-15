@@ -10,6 +10,6 @@
 				}
 			}
 		},
-		"userURI": "mongodb://127.0.0.1:27017/payment-db-app"
+		"userURI": "YOUR MONGOLAB USER CONNECTION"
 	}
 }
